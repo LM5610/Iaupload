@@ -44,7 +44,7 @@ public final class Ia_upload extends JavaPlugin {
         }
         Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "——————————————————————————————");
 
-        // 创建/加载 id.yml 文件
+
         idFile = new File(getDataFolder(), "id.yml");
         if (!idFile.exists()) {
             idFile.getParentFile().mkdirs();
@@ -58,9 +58,9 @@ public final class Ia_upload extends JavaPlugin {
             e.printStackTrace();
         }
 
-        // 检查是否已经有一个 userId
+
         if (!idConfig.contains("pluginUser.userId")) {
-            //生成一个新的 UUID 并保存到 id.yml
+
             String newUserId = UUID.randomUUID().toString();
             idConfig.set("pluginUser.userId", newUserId);
             try {
@@ -91,21 +91,21 @@ public final class Ia_upload extends JavaPlugin {
         });
     }
 
-    // 将文件上传逻辑放到一个异步任务中
+
     private void uploadFileAsync(File file, CommandSender sender) {
         Bukkit.getScheduler().runTaskAsynchronously(this, () -> uploadFile(file, sender));
     }
 
     public void uploadFile(File file, CommandSender sender) {
 
-        // 从 id.yml 文件中读取 userId
+
         String userId = idConfig.getString("pluginUser.userId");
 
         String randomChars = UUID.randomUUID().toString().substring(0, 5);
         String newFileName = userId + "_" + randomChars + ".zip";
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpPost uploadFile = new HttpPost("http://ia.tinksp.cn:38031/upload");
+        HttpPost uploadFile = new HttpPost("http://后端处理ip:端口/upload");
 
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
         builder.addBinaryBody("file", file, ContentType.DEFAULT_BINARY, newFileName);
@@ -141,7 +141,7 @@ public final class Ia_upload extends JavaPlugin {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("      url: ")) {
-                    line = "      url: " + newUrl;  // 替换新的URL
+                    line = "      url: " + newUrl;  
                 }
                 newContent.append(line).append(System.lineSeparator());
             }
