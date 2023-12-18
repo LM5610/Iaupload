@@ -8,7 +8,6 @@ def delete_old_file(user_id):
         if filename.startswith(user_id):
             os.remove(os.path.join('uploads', filename))
 
-# 上传文件
 @app.route('/upload', methods=['POST'])
 def upload_file():
     uploaded_file = request.files['file']
@@ -19,12 +18,11 @@ def upload_file():
 
         file_path = os.path.join('uploads', uploaded_file.filename)
         uploaded_file.save(file_path)
-        download_url = f"http://ia.tinksp.cn:38031/download/{uploaded_file.filename}"
+        download_url = f"http://域名加端口/download/{uploaded_file.filename}"
         return jsonify({"status": "success", "download_url": download_url})
     else:
         return jsonify({"status": "failure", "message ": "没有上传文件。"})
 
-# GET请求下载文件
 @app.route('/download/<filename>', methods=['GET'])
 def download_file(filename):
     file_path = os.path.join('uploads', filename)
