@@ -39,21 +39,17 @@
                         </goals>
                         <configuration>
                             <filters>
-                                <!-- 排除特定的重叠文件 -->
                                 <filter>
                                     <artifact>*:*</artifact>
                                     <excludes>
                                         <exclude>META-INF/LICENSE.txt</exclude>
                                         <exclude>META-INF/NOTICE.txt</exclude>
-                                        <!-- 其他需要排除的文件 -->
                                     </excludes>
                                 </filter>
                             </filters>
                             <transformers>
-                                <!-- 合并特定的资源文件 -->
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer"/>
-                                <!-- 其他资源转换器 -->
                             </transformers>
                         </configuration>
                     </execution>
@@ -91,7 +87,6 @@
             <version>4.5.14</version>
         </dependency>
 
-        <!-- Apache HttpMime（用于文件上传） -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
