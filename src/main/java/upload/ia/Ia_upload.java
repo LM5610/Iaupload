@@ -24,7 +24,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-public final class Tinkia extends JavaPlugin {
+public final class Ia_Upload extends JavaPlugin {
 
     private File idFile;
     private FileConfiguration idConfig;
